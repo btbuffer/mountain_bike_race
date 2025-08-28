@@ -5,14 +5,18 @@ const RiderSchema = mongoose.Schema(
     firstname: {
       type: String,
       required: true,
-      min: 6,
-      max: 15,
+      minlength: 3,
+      maxlength: 15,
     },
     lastname: {
       type: String,
       required: true,
-      min: 6,
-      max: 15,
+      minlength: 6,
+      maxlength: 15,
+    },
+    bio: {
+      type: String,
+      maxlength: 50,
     },
     sex: {
       type: String,
@@ -26,6 +30,7 @@ const RiderSchema = mongoose.Schema(
       type: String,
       unique: true,
     },
+    // userType
   },
   {
     timestamps: true,
