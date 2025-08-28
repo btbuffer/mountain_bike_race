@@ -1,0 +1,28 @@
+{
+  "name": "mountain_bike_race",
+  "version": "1.0.0",
+  "description": "An annual mountain bike race application.",
+  "main": "index.js",
+  "scripts": {
+    "start-dev": "nodemon main",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/btbuffer/mountain_bike_race.git"
+  },
+  "author": "JIMOH SIKIRU OLALEKAN",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/btbuffer/mountain_bike_race/issues"
+  },
+  "homepage": "https://github.com/btbuffer/mountain_bike_race#readme",
+  "dependencies": {
+    "dotenv": "^17.2.1",
+    "express": "^5.1.0",
+    "mongoose": "^8.18.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
