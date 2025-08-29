@@ -11,7 +11,9 @@ const createRider = async (request, response) => {
 };
 
 const getFastestRiders = async (request, response) => {
-  const { raceId } = request;
+  const {
+    raceDetails: { raceId },
+  } = request;
   const raceResults = await Result.find({
     race: raceId,
     finishTime: { $ne: null },
@@ -29,7 +31,9 @@ const getFastestRiders = async (request, response) => {
 };
 
 const getNonFinishers = async (request, response) => {
-  const { raceId } = request;
+  const {
+    raceDetails: { raceId },
+  } = request;
 
   const incompleteRaceRiders = await Result.find({
     race: raceId,
@@ -44,7 +48,9 @@ const getNonFinishers = async (request, response) => {
 };
 
 const getNotParticipants = async (request, response) => {
-  const { raceId } = request;
+  const {
+    raceDetails: { raceId },
+  } = request;
 
   const participants = await Result.find({ race: raceId }).distinct("rider");
   const nonparticipants = await Rider.find(
