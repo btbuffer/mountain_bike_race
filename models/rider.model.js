@@ -30,6 +30,10 @@ const RiderSchema = mongoose.Schema(
       type: String,
       unique: true,
     },
+    race: {
+      type: mongoose.Types.ObjectId,
+      ref: "Race",
+    },
     // userType
   },
   {
