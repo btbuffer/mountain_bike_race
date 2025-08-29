@@ -18,15 +18,15 @@ const RaceSchema = mongoose.Schema(
     },
     tournament: {
       type: String,
-      required: true,
+      // required: true,
       // unique: true,
     },
-    // date: {
-    //   type: Date,
-    //   required: true,
-    //   min: Date.now(),
-    //   default: Date.now(),
-    // },
+    startTime: {
+      type: Date,
+      required: true,
+      min: Date.now(),
+      default: Date.now(),
+    },
     distance: {
       type: Number,
       required: true,
