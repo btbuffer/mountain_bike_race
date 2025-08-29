@@ -20,3 +20,5 @@ mongoose
   .connect(process.env.DBURI)
   .then(() => console.log("MongoDB connection established!"))
   .catch((err) => console.log("MongoDB connectionError: ", err.message));
+
+module.exports = app;
