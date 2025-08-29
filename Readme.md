@@ -35,6 +35,7 @@ This is a simple Node.js application built with Express and Mongoose to manage m
 ### Race
 
 - `POST /api/race`: Create and add a race to a database (body: {name: string, location: string, distance: string, startTime: date})
+- `GET /api/race/:raceId/weather`: Get current weather details for a race location(body: {location: string, temperature: number, conditions: string, humidity: number})
 
 ### Result
 
