@@ -15,7 +15,8 @@ const validateRaceId = async (request, response, next) => {
   const foundRace = await Race.findById(raceId);
   if (!foundRace) return response.status(404).send({ msg: "Race not found" });
 
-  request.raceId = raceId;
+  const raceDetails = { raceId, race: foundRace };
+  request.raceDetails = raceDetails;
 
   next();
 };
