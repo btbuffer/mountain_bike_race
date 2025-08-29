@@ -1,3 +1,4 @@
+// const jest = require("jest");
 const mongoose = require("mongoose");
 const request = require("supertest");
 
@@ -16,7 +17,8 @@ afterAll(async () => {
 describe("Mountain Bike Race API", () => {
   let riderOne, riderTwo, riderThree, riderFour, race;
 
-  beforEach(async () => {
+  beforeEach(async () => {
+    await mongoose.connect(process.env.DBURI);
     await Rider.deleteMany({});
     await Race.deleteMany({});
     await Result.deleteMany({});
@@ -26,21 +28,19 @@ describe("Mountain Bike Race API", () => {
       lastname: "Mountaineer",
       sex: "F",
     }).save();
+
     riderTwo = await new Rider({
       firstname: "Rider Two",
       lastname: "Mountaineer",
       sex: "M",
     }).save();
-    riderTwo = await new Rider({
-      firstname: "Rider Two",
-      lastname: "Mountaineer",
-      sex: "M",
-    }).save();
+
     riderThree = await new Rider({
       firstname: "Rider Three",
       lastname: "Mountaineer",
       sex: "F",
     }).save();
+
     riderFour = await new Rider({
       firstname: "Rider Four",
       lastname: "Mountaineer",
@@ -51,6 +51,7 @@ describe("Mountain Bike Race API", () => {
       name: "Test Race",
       startTime: new Date(),
       location: "Cairo",
+      distance: 15.5,
     }).save();
 
     await new Result({
@@ -58,25 +59,27 @@ describe("Mountain Bike Race API", () => {
       race: race._id,
       finishTime: 100,
     }).save();
+
     await new Result({
       rider: riderTwo._id,
       race: race._id,
       finishTime: 83,
     }).save();
+
     await new Result({
       rider: riderThree._id,
       race: race._id,
       finishTime: null,
     }).save();
+  });
 
-    test("GET /api/rider/:raceId/top3riders should return top 3 fastest riders", async () => {
-      const response = await request(app).get(
-        `/api/rider/${race._id}/top3riders`
-      );
-      expect(response.statusCode).toBe(200);
-      expect(response.body).toHaveLength(2);
-      expect(response.body[0].rider).toBe("Rider Two");
-      expect(response.body[0].finishTime).toBe(83);
-    });
+  test("GET /api/rider/:raceId/top3riders should return top 3 fastest riders", async () => {
+    const response = await request(app).get(
+      `/api/rider/${race._id}/top3riders`
+    );
+    expect(response.statusCode).toBe(200);
+    expect(response.body).toHaveLength(2);
+    expect(response.body[0].name).toBe("Rider Two Mountaineer");
+    expect(response.body[0].timeTaken).toBe(83);
   });
 });
