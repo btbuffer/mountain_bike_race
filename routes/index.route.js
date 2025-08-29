@@ -2,9 +2,13 @@ const mongoose = require("mongoose");
 const { Router } = require("express");
 
 const riderRouter = require("./rider.route");
+const raceRouter = require("./race.route");
+const resultRouter = require("./result.route");
 
 const router = Router();
 router.use(riderRouter);
+router.use(raceRouter);
+router.use(resultRouter);
 
 router.get("/api/status", async (request, response) => {
   const mountainRacerModels = mongoose.modelNames();
